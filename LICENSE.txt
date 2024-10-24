@@ -1,0 +1,49 @@
+LICENSE AGREEMENT
+
+SOFTWARE OWNERSHIP ACKNOWLEDGEMENT
+The Ronsin Litigation Support Services owns the referenced software program ("Program"), developed by Nathan Curtis ("Author").
+
+LICENSE GRANT
+The owner grants a non-exclusive, worldwide, perpetual license to the Program to the end-user.
+
+RIGHTS
+End-users can:
+    (a) Use the Program for internal business.
+    (b) Create backup copies for archival purposes.
+
+RESTRICTIONS
+End-users must not:
+    (a) Transfer the Program without the owner's written consent.
+    (b) Derive the source code, except as law allows.
+    (c) Modify or create derivatives of the Program.
+    (d) Distribute the Program to others.
+    (e) Remove proprietary notices from the Program.
+
+The owner reserves all rights not granted herein.
+
+COPYRIGHT
+The Program is owned by the owner and is legally protected.
+
+WARRANTY DISCLAIMER
+The Program is provided "AS IS" without any warranty.
+
+LIABILITY LIMITATION
+The owner or Author won't be liable for any damages from using or not being able to use the Program.
+
+TERMINATION
+The Agreement ends if the end-user breaks any term. Then, the end-user must destroy all copies of the Program.
+
+GENERAL
+    (a) Changes to this Agreement must be in writing from the owner.
+    (b) Invalid parts of this Agreement don't affect the rest.
+    (c) This Agreement is under the owner's local laws.
+
+Using the Program means you've read, understood, and agreed to this Agreement.
+
+CONTACT
+For permissions, contact the owner at:
+Phone: 909-594-5995
+Fax: 909-598-2308
+Email: sales@ronsin.com
+
+END OF AGREEMENT
