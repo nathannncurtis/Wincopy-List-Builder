@@ -39,7 +39,7 @@ executables = [
     Executable(
         main_terminal_script,
         base=base,  # Hide terminal for this as well
-        target_name="build.exe"  # Name of the terminal-based output executable
+        target_name="list.exe"  # Name of the terminal-based output executable
     )
 ]
 
