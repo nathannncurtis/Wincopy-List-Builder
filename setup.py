@@ -1,10 +1,11 @@
 import sys
 from cx_Freeze import setup, Executable
 
-# Specify the path of your files
-main_script = r"C:\Users\ncurtis\3D Objects\BATCH\xtra\programs\List Build 2.0\main.py"
-license_file = r"C:\Users\ncurtis\3D Objects\BATCH\xtra\programs\List Build 2.0\LICENSE.txt"
-icon_file = r"C:\Users\ncurtis\3D Objects\BATCH\xtra\programs\List Build 2.0\List.ico"
+# Paths for main scripts and additional files
+main_gui_script = r"C:\Users\ncurtis\Documents\PROJECTS\!Completed Programs\List Build\main.py"
+main_terminal_script = r"C:\Users\ncurtis\3D Objects\BATCH\xtra\programs\List Build 2.0\build.py"
+license_file = r"C:\Users\ncurtis\Documents\PROJECTS\!Completed Programs\List Build\LICENSE.txt"
+icon_file = r"C:\Users\ncurtis\Documents\PROJECTS\!Completed Programs\List Build\List.ico"
 
 # Options for the build
 build_exe_options = {
@@ -13,29 +14,32 @@ build_exe_options = {
     "include_files": [license_file, icon_file]  # Including additional files like license and icon
 }
 
-# Determine the base
-base = None
-if sys.platform == "win32":
-    base = "Win32GUI"
+# Set base for GUI app to "Win32GUI" to hide the terminal window
+base = "Win32GUI" if sys.platform == "win32" else None
 
-# Define the executable
+# Define executables for both the GUI and terminal-based apps
 executables = [
     Executable(
-        main_script,
+        main_gui_script,
         base=base,
         icon=icon_file,
-        target_name="List Builder.exe"  # Name of the output executable
+        target_name="List Builder.exe"  # Name of the GUI output executable
+    ),
+    Executable(
+        main_terminal_script,
+        base=base,  # Hide terminal for this as well
+        target_name="build.exe"  # Name of the terminal-based output executable
     )
 ]
 
 # Setup configuration
 setup(
-    name="List Builder",
+    name="List Builder Suite",
     author="Nathan Curtis",
     author_email="nathancurtis951@gmail.com",
     license="Proprietary",
-    version="2.0",
-    description="List Builder 2.0",
+    version="2.6",
+    description="List Builder 2.0 and associated tools",
     options={"build_exe": build_exe_options},
     executables=executables
 )
