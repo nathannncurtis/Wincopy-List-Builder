@@ -18,7 +18,8 @@ class MainApp(QMainWindow):
         self.setWindowIcon(QIcon('List.ico'))
         self.setGeometry(100, 100, 515, 200)
         self.setFixedSize(515, 200)
-        self.dark_mode = self.settings.value("darkMode", type=bool)
+        self.dark_mode = self.settings.value("darkMode", False, type=bool)
+        self.last_directory = self.settings.value("lastDirectory", "", type=str)
         self.apply_theme()
         self.variables = self.settings.value("variables", [], type=list)
         self.initUI()
@@ -81,14 +82,23 @@ class MainApp(QMainWindow):
         self.apply_theme()
 
     def browse_directory(self):
-        directory_path = QFileDialog.getExistingDirectory(self, "Select a directory")
-        if directory_path:
-            self.directory_entry.setText(directory_path)
+            # Set the starting directory to the last used directory, or fallback if not set
+            start_directory = self.get_valid_directory(self.last_directory)
+            directory_path = QFileDialog.getExistingDirectory(self, "Select a directory", start_directory)
+            if directory_path:
+                self.directory_entry.setText(directory_path)
+                self.last_directory = directory_path
+                self.settings.setValue("lastDirectory", directory_path)
+
+    def get_valid_directory(self, path):
+        while path and not os.path.isdir(path):
+            path = os.path.dirname(path)  # Move up a level
+        return path or os.path.expanduser("~")  # Default to home if no valid directory
 
     def start_process(self):
         directory_path = self.directory_entry.text()
         if directory_path:
-            wincopysql_window = gw.getWindowsWithTitle("Photocopy Orders: 1 - Default Company Name")
+            wincopysql_window = gw.getWindowsWithTitle("Photocopy Orders: 1 - Cloud")
             if wincopysql_window:
                 wincopysql_window[0].activate()
                 time.sleep(1)
@@ -107,6 +117,10 @@ class MainApp(QMainWindow):
                     time.sleep(0.1)
                 self.progress_bar.setValue(i + 1)
             self.result_label.setText("List has been built.")
+            
+            # Check if the "closeAfter" setting is enabled and exit if true
+            if self.settings.value("closeAfter", False, type=bool):
+                self.close()
         else:
             self.result_label.setText("Please enter a valid directory path")
 
@@ -254,4 +268,6 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
     ex = MainApp()
     ex.show()
+    ex.activateWindow()  
+    ex.raise_()          
     sys.exit(app.exec_())
