@@ -1,4 +1,5 @@
 import sys
+import os
 from cx_Freeze import setup, Executable
 
 # Paths for main scripts and additional files
@@ -7,11 +8,21 @@ main_terminal_script = r"C:\Users\ncurtis\Documents\PROJECTS\!Completed Programs
 license_file = r"C:\Users\ncurtis\Documents\PROJECTS\!Completed Programs\List Build\LICENSE.txt"
 icon_file = r"C:\Users\ncurtis\Documents\PROJECTS\!Completed Programs\List Build\List.ico"
 
+# Path to Anaconda's Qt bin directory
+qt_bin_path = r"C:\Users\ncurtis\AppData\Local\anaconda3\Library\bin"
+
+# Include necessary files and directories
+include_files = [
+    license_file,
+    icon_file,
+    (qt_bin_path, "bin")  # Copies the entire Qt `bin` directory as a subdirectory named "bin"
+]
+
 # Options for the build
 build_exe_options = {
     "packages": ["os", "re", "sys", "time", "pyautogui", "pygetwindow", "PyQt5.QtWidgets", "PyQt5.QtCore", "PyQt5.QtGui"],
     "excludes": ["matplotlib", "scipy"],
-    "include_files": [license_file, icon_file]  # Including additional files like license and icon
+    "include_files": include_files
 }
 
 # Set base for GUI app to "Win32GUI" to hide the terminal window
