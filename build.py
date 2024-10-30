@@ -2,6 +2,7 @@ import os
 import re
 import time
 import sys
+import shlex
 import pyautogui
 import pygetwindow as gw
 
@@ -31,14 +32,19 @@ def start_process(directory_path):
             time.sleep(0.1)
 
     print("List has been built.")
-    sys.exit(0)  
+    sys.exit(0)
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
         print("Please provide a directory path.")
         sys.exit(1)
 
-    directory_path = sys.argv[1]
+    # Join all arguments in case the path has spaces without quotes
+    args = " ".join(sys.argv[1:])
+    split_args = shlex.split(args)  # Split intelligently to handle quotes
+
+    directory_path = split_args[0]  # The first (and only) argument after processing
+
     if not os.path.isdir(directory_path):
         print("Invalid directory. Please provide a valid directory path.")
         sys.exit(1)
