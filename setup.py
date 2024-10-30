@@ -3,7 +3,7 @@ from cx_Freeze import setup, Executable
 
 # Paths for main scripts and additional files
 main_gui_script = r"C:\Users\ncurtis\Documents\PROJECTS\!Completed Programs\List Build\main.py"
-main_terminal_script = r"C:\Users\ncurtis\3D Objects\BATCH\xtra\programs\List Build 2.0\build.py"
+main_terminal_script = r"C:\Users\ncurtis\Documents\PROJECTS\!Completed Programs\List Build\build.py"
 license_file = r"C:\Users\ncurtis\Documents\PROJECTS\!Completed Programs\List Build\LICENSE.txt"
 icon_file = r"C:\Users\ncurtis\Documents\PROJECTS\!Completed Programs\List Build\List.ico"
 
@@ -39,7 +39,7 @@ setup(
     author_email="nathancurtis951@gmail.com",
     license="Proprietary",
     version="2.6",
-    description="List Builder 2.0 and associated tools",
+    description="List Builder 2.6 and associated tools",
     options={"build_exe": build_exe_options},
     executables=executables
 )
