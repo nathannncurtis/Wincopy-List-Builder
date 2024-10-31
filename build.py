@@ -2,7 +2,6 @@ import os
 import re
 import time
 import sys
-import shlex
 import pyautogui
 import pygetwindow as gw
 
@@ -35,16 +34,14 @@ def start_process(directory_path):
     sys.exit(0)
 
 if __name__ == "__main__":
-    if len(sys.argv) < 2:
-        print("Please provide a directory path.")
-        sys.exit(1)
+    # Use the provided directory path, or default to the current directory
+    directory_path = sys.argv[1] if len(sys.argv) > 1 else os.getcwd()
 
-    # Join all arguments in case the path has spaces without quotes
-    args = " ".join(sys.argv[1:])
-    split_args = shlex.split(args)  # Split intelligently to handle quotes
+    # Ensure we have an absolute path
+    if not os.path.isabs(directory_path):
+        directory_path = os.path.abspath(directory_path)
 
-    directory_path = split_args[0]  # The first (and only) argument after processing
-
+    # Validate the directory path
     if not os.path.isdir(directory_path):
         print("Invalid directory. Please provide a valid directory path.")
         sys.exit(1)
