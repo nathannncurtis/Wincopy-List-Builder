@@ -13,8 +13,10 @@ def extract_valid_name(file_name):
 def start_process(directory_path):
     wincopysql_window = gw.getWindowsWithTitle("Photocopy Orders: 1 - Cloud")
     if wincopysql_window:
-        wincopysql_window[0].activate()
-        time.sleep(1)
+        # Try to activate the window until it is the foreground window
+        while not wincopysql_window[0].isActive:
+            wincopysql_window[0].activate()
+            time.sleep(0.5)  # Wait briefly before checking again
 
     file_paths = [os.path.join(directory_path, file_name) for file_name in os.listdir(directory_path)]
     file_paths.sort(key=lambda x: os.path.getmtime(x))
